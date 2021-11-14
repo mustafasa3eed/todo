@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
             elevation: 0,
             clipBehavior: Clip.antiAlias,
             child: BottomNavigationBar(
+              elevation: 0,
               currentIndex: currentIndex,
               onTap: (index){
                 currentIndex= index;
