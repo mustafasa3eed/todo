@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/ui/home/new_task.dart';
 import 'package:todo/ui/home/settings.dart';
 import 'package:todo/ui/home/todo_list.dart';
 
@@ -22,7 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         shape: const StadiumBorder(side: BorderSide(color: Colors.white, width:4)),
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          newTaskSheet();
+        },
       ),
       bottomNavigationBar:
           BottomAppBar(
@@ -52,4 +55,10 @@ class _HomeScreenState extends State<HomeScreen> {
     TodoList(),
     Settings(),
   ];
+  void newTaskSheet(){
+    showModalBottomSheet(context: context, builder: (buildContext){
+      return newTask();
+    });
+  }
+
 }
