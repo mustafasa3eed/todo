@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo/ui/home/theme.dart';
+class TodoWidget extends StatefulWidget {
+  @override
+  State<TodoWidget> createState() => _TodoWidgetState();
+}
 
-class TodoWidget extends StatelessWidget {
-  const TodoWidget({Key? key}) : super(key: key);
-
+class _TodoWidgetState extends State<TodoWidget> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
       child: Slidable(
@@ -30,7 +37,7 @@ class TodoWidget extends StatelessWidget {
                     color: Colors.white,
                   ),
                   Text(
-                    'Delete',
+                    AppLocalizations.of(context)!.delete,
                     style: TextStyle(color: Colors.white),
                     textAlign: TextAlign.center,
                   )
@@ -42,7 +49,7 @@ class TodoWidget extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
+            color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
           ),
           margin: EdgeInsets.symmetric(vertical: 10),
           width: 352,

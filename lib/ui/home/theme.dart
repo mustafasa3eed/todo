@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyThemeData{
-  static const Color primaryColor = Color.fromARGB(255, 183, 147, 95);
+  static const Color primaryColor = Color.fromARGB(255, 20, 25, 34);
   static const Color primaryColorDark = Color.fromARGB(255, 20, 26, 46);
   static const Color lightScaffoldBackground =
   Color.fromARGB(255,223,236,219);

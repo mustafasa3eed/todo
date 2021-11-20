@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:todo/ui/home/theme.dart';
 import 'package:todo/ui/home/todo_widget.dart';
+import 'package:provider/provider.dart';
+
 
 class TodoList extends StatefulWidget {
   @override
@@ -9,18 +13,17 @@ class TodoList extends StatefulWidget {
 
 class _TodoListState extends State<TodoList> {
   DateTime selectedDay = DateTime.now();
-
   DateTime focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Container(
       child: Column(
         children: [
           Container(
-            color: Colors.white,
+            color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
             child: TableCalendar(
-
               selectedDayPredicate: (day) {
                return isSameDay(day,selectedDay);
               },
