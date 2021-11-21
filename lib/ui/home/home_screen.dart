@@ -29,7 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
-          shape: const StadiumBorder(side: BorderSide(color: Colors.white, width:4)),
+          shape:  StadiumBorder(
+              side: BorderSide(
+                  color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white, width:4)),
           child: const Icon(Icons.add),
           onPressed: () {
             newTaskSheet();

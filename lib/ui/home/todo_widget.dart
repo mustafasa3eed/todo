@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/data/firebase.dart';
+import 'package:todo/data/task.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo/ui/home/theme.dart';
-class TodoWidget extends StatefulWidget {
-  @override
-  State<TodoWidget> createState() => _TodoWidgetState();
-}
+import 'package:fluttertoast/fluttertoast.dart';
+class TodoWidget extends StatelessWidget {
+  task item;
 
-class _TodoWidgetState extends State<TodoWidget> {
+  TodoWidget(this.item);
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
@@ -19,11 +21,26 @@ class _TodoWidgetState extends State<TodoWidget> {
         actionPane: SlidableDrawerActionPane(),
         actions: [
           IconSlideAction(
-            onTap: () {},
+            onTap: () {
+              deleteTask(item).then((value){
+                Fluttertoast.showToast(
+                  msg: 'Task deleted successfully!',toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.SNACKBAR,
+                  timeInSecForIosWeb: 1,
+                  textColor: Colors.red,
+                  backgroundColor: Colors.white,
+                  fontSize: 16,
+                );
+              }).onError((error,stackTrace){
+
+              }).timeout(Duration(seconds: 10),onTimeout:(){
+
+              });
+            },
             color: Colors.transparent,
             iconWidget: Container(
               decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 236, 75, 75),
+                  color: Color.fromARGB(255, 236, 75, 75),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
                       bottomLeft: Radius.circular(12))),
@@ -64,17 +81,26 @@ class _TodoWidgetState extends State<TodoWidget> {
               ),
               Expanded(
                   child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Play basketball',
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
-              )),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        item.title,
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.access_time)
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  )),
               Container(
                 width: 69,
                 height: 34,
@@ -91,6 +117,6 @@ class _TodoWidgetState extends State<TodoWidget> {
           ),
         ),
       ),
-    );
-  }
+    );  }
 }
+

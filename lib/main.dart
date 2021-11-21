@@ -6,34 +6,30 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/ui/home/theme.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp( ChangeNotifierProvider(
-      create: (buildContext){
+  runApp(ChangeNotifierProvider(
+      create: (buildContext) {
         return AppConfigProvider();
       },
       child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
-
-
   // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
 
     return MaterialApp(
       routes: {
-        HomeScreen.routeName:(buildContext)=> HomeScreen(),
+        HomeScreen.routeName: (buildContext) => HomeScreen(),
       },
       initialRoute: HomeScreen.routeName,
       title: 'Flutter Demo',
@@ -45,5 +41,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-
