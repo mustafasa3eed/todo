@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:todo/data/firebase.dart';
+import 'package:todo/data/task.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:todo/ui/home/theme.dart';
 import 'package:todo/ui/home/todo_widget.dart';
@@ -67,13 +70,22 @@ class _TodoListState extends State<TodoList> {
             ),
           ),
           Expanded(
-            child: ListView.builder(itemBuilder: (buildContext ,index){
-              return TodoWidget();
-            },
-            itemCount: 20,
+            child: StreamBuilder<QuerySnapshot<task>>(
+              stream: getTasks().snapshots(),
+              builder: (BuildContext buildContext,AsyncSnapshot<QuerySnapshot<task>> snapshot ){
+                if(snapshot.hasError){
+                 return Text(snapshot.error.toString());
+                }else if(snapshot.connectionState == ConnectionState.waiting){
+                  return Center(child: CircularProgressIndicator());
+                }
+                List<task> item = snapshot.data!.docs.map((e) => e.data()).toList();
+                return ListView.builder(itemBuilder: (buildContext, index){
+                  return TodoWidget(item[index]);
+                },
+                itemCount: item.length,);
+            }
+            )
             ),
-          )
-          
         ],
       ),
     );
