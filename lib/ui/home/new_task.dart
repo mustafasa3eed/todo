@@ -14,6 +14,9 @@ class _newTaskState extends State<newTask> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 150,left: 20,right: 20),
+      decoration: BoxDecoration(color: Colors.white,
+      borderRadius: BorderRadius.circular(12)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

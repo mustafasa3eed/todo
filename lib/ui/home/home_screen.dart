@@ -69,13 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
     Settings(),
   ];
   void newTaskSheet(){
-    showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25)
-      ),
-        context: context, builder: (builder){
-      return
-        newTask();
+    showModalBottomSheet<void>(
+      backgroundColor: Colors.transparent,
+      context:context,
+      builder:(BuildContext context){
+        return(
+            newTask()
+        );
     });
   }
 
