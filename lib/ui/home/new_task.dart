@@ -15,7 +15,6 @@ class _newTaskState extends State<newTask> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 120,left: 20,right: 20),
       decoration: BoxDecoration(color: Colors.white,
       borderRadius: BorderRadius.circular(12)),
       child: Column(
@@ -89,14 +88,11 @@ class _newTaskState extends State<newTask> {
                     style: TextStyle(fontSize: 18),),
                 ],
               )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-                onPressed: () {
-                  addToDo();
-                },
-                child: Text('Add')),
-          )
+          ElevatedButton(
+              onPressed: () {
+                addToDo();
+              },
+              child: Text('Add'))
         ],
       ),
     );
