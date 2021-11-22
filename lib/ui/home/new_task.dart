@@ -14,7 +14,7 @@ class _newTaskState extends State<newTask> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 150,left: 20,right: 20),
+      margin: EdgeInsets.only(bottom: 120,left: 20,right: 20),
       decoration: BoxDecoration(color: Colors.white,
       borderRadius: BorderRadius.circular(12)),
       child: Column(
@@ -74,8 +74,14 @@ class _newTaskState extends State<newTask> {
               onTap: () {
                 taskDate();
               },
-              child: Text(
-                  '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}')),
+              child: Row(
+                children: [
+                  Icon(Icons.edit),
+                  Text(
+                      '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
+                    style: TextStyle(fontSize: 18),),
+                ],
+              )),
           ElevatedButton(
               onPressed: () {
                 addToDo();
