@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/data/firebase.dart';
+import 'package:flutter/cupertino.dart';
 
 class newTask extends StatefulWidget {
   @override
@@ -75,18 +76,27 @@ class _newTaskState extends State<newTask> {
                 taskDate();
               },
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.edit),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.calendar_today,
+                    ),
+                  ),
                   Text(
                       '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
                     style: TextStyle(fontSize: 18),),
                 ],
               )),
-          ElevatedButton(
-              onPressed: () {
-                addToDo();
-              },
-              child: Text('Add'))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+                onPressed: () {
+                  addToDo();
+                },
+                child: Text('Add')),
+          )
         ],
       ),
     );

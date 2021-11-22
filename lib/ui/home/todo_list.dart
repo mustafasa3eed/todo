@@ -70,20 +70,22 @@ class _TodoListState extends State<TodoList> {
             ),
           ),
           Expanded(
-            child: StreamBuilder<QuerySnapshot<task>>(
-              stream: getTasks().snapshots(),
-              builder: (BuildContext buildContext,AsyncSnapshot<QuerySnapshot<task>> snapshot ){
-                if(snapshot.hasError){
-                 return Text(snapshot.error.toString());
-                }else if(snapshot.connectionState == ConnectionState.waiting){
-                  return Center(child: CircularProgressIndicator());
-                }
-                List<task> item = snapshot.data!.docs.map((e) => e.data()).toList();
-                return ListView.builder(itemBuilder: (buildContext, index){
-                  return TodoWidget(item[index]);
-                },
-                itemCount: item.length,);
-            }
+            child: Scrollbar(
+              child: StreamBuilder<QuerySnapshot<task>>(
+                stream: getTasks().snapshots(),
+                builder: (BuildContext buildContext,AsyncSnapshot<QuerySnapshot<task>> snapshot ){
+                  if(snapshot.hasError){
+                   return Text(snapshot.error.toString());
+                  }else if(snapshot.connectionState == ConnectionState.waiting){
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  List<task> item = snapshot.data!.docs.map((e) => e.data()).toList();
+                  return ListView.builder(itemBuilder: (buildContext, index){
+                    return TodoWidget(item[index]);
+                  },
+                  itemCount: item.length,);
+              }
+              ),
             )
             ),
         ],
