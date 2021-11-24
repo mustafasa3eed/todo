@@ -38,26 +38,30 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         bottomNavigationBar:
-            BottomAppBar(
-              color: provider.isDarkMode()?MyThemeData.primaryColorDark:MyThemeData.primaryColor,
-              shape: const CircularNotchedRectangle(),
-              notchMargin: 8,
-              elevation: 0,
-              clipBehavior: Clip.antiAlias,
-              child: BottomNavigationBar(
-                backgroundColor: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
-                elevation: 0,
-                currentIndex: currentIndex,
-                onTap: (index){
-                  currentIndex= index;
-                  setState(() {});
-                },
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                items: [
-                  const BottomNavigationBarItem(icon: Icon(Icons.list), label: ''),
-                  const BottomNavigationBarItem(icon: Icon(Icons.settings),label: ''),
-                ],
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8)
+              ),
+              child: BottomAppBar(
+                color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+                shape: const CircularNotchedRectangle(),
+                notchMargin: 8,
+                clipBehavior: Clip.antiAlias,
+                child: BottomNavigationBar(
+                  backgroundColor: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+                  elevation: 0,
+                  currentIndex: currentIndex,
+                  onTap: (index){
+                    currentIndex= index;
+                    setState(() {});
+                  },
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  items: [
+                    const BottomNavigationBarItem(icon: Icon(Icons.list), label: ''),
+                    const BottomNavigationBarItem(icon: Icon(Icons.settings),label: ''),
+                  ],
+                ),
               ),
             ),
         body: tabs[currentIndex],

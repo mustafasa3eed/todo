@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo/data/firebase.dart';
-import 'package:flutter/cupertino.dart';
 
 class newTask extends StatefulWidget {
   @override
@@ -16,7 +15,7 @@ class _newTaskState extends State<newTask> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Colors.white,
-      borderRadius: BorderRadius.circular(12)),
+      borderRadius: BorderRadius.circular(25)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
