@@ -74,10 +74,13 @@ class TodoWidget extends StatelessWidget {
           child: Row(
             children: [
               Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Theme.of(context).primaryColor,
+                ),
                 margin: EdgeInsets.all(10),
                 width: 4,
                 height: 62,
-                color: Theme.of(context).primaryColor,
               ),
               Expanded(
                   child: Column(

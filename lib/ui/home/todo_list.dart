@@ -24,7 +24,7 @@ class _TodoListState extends State<TodoList> {
         Container(
           color: Colors.white,
           child: CalendarTimeline(
-            initialDate: DateTime.now(),
+            initialDate: selectedDay,
             firstDate: DateTime.now(),
             lastDate: DateTime.now().add(Duration(days: 365)),
             onDateSelected: (date) => print(date),
@@ -35,13 +35,12 @@ class _TodoListState extends State<TodoList> {
             activeBackgroundDayColor: Colors.redAccent[100],
             dotsColor: Color(0xFF333A47),
             selectableDayPredicate: (date) => date.day != 23,
-            locale: 'en_ISO',
           )
         ),
         Expanded(
             child: Scrollbar(
           child: StreamBuilder<QuerySnapshot<task>>(
-              stream: getTasks().snapshots(),
+              stream: getTasks().where('dateTime',isEqualTo: selectedDay.millisecondsSinceEpoch).snapshots(),
               builder: (BuildContext buildContext,
                   AsyncSnapshot<QuerySnapshot<task>> snapshot) {
                 if (snapshot.hasError) {

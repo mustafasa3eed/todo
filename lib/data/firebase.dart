@@ -1,6 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todo/data/task.dart';
 
+extension MyDateExtension on DateTime{
+  DateTime getDateOnly(){
+    return DateTime(this.year,this.month,this.day);
+  }
+}
+
 CollectionReference<task>getTasks(){
   return FirebaseFirestore.instance.collection(task.collectionName)
       .withConverter<task>(fromFirestore: (snapshot,_)=> task.fromJson(snapshot.data()!),
@@ -9,7 +15,7 @@ CollectionReference<task>getTasks(){
 Future<void> pushToFirestore (String title, String description, DateTime dateTime){
   CollectionReference<task> collectionReference = getTasks();
   DocumentReference<task> docRef = collectionReference.doc();
-  task item = task(id: docRef.id, title: title, description: description, dateTime: dateTime);
+  task item = task(id: docRef.id, title: title, description: description, dateTime: dateTime.getDateOnly());
   return docRef.set(item);
 }
 
