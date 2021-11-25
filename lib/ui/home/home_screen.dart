@@ -58,8 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
                   items: [
-                    const BottomNavigationBarItem(icon: Icon(Icons.list), label: ''),
-                    const BottomNavigationBarItem(icon: Icon(Icons.settings),label: ''),
+                    const BottomNavigationBarItem(icon: Icon(Icons.list,size: 33,), label: ''),
+                    const BottomNavigationBarItem(icon: Icon(Icons.settings_outlined, size: 33,),label: ''),
                   ],
                 ),
               ),
