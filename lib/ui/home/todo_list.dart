@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/data/firebase.dart';
 import 'package:todo/data/task.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:todo/ui/home/theme.dart';
 import 'package:todo/ui/home/todo_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,7 @@ class _TodoListState extends State<TodoList> {
     return Column(
       children: [
         Container(
-            color: Colors.white,
+            color: Colors.blue,
             child: CalendarTimeline(
               initialDate: selectedDay,
               firstDate: DateTime.now(),
@@ -34,7 +35,7 @@ class _TodoListState extends State<TodoList> {
                 });
               },
               leftMargin: 20,
-              monthColor: Colors.blueGrey,
+              monthColor: Colors.black,
               dayColor: Colors.teal[200],
               activeDayColor: Colors.white,
               activeBackgroundDayColor: Colors.redAccent[100],

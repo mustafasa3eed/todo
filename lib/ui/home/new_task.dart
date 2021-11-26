@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo/data/firebase.dart';
+import 'package:todo/providers/AppConfigProvider.dart';
 
 class newTask extends StatefulWidget {
   @override
@@ -7,12 +9,15 @@ class newTask extends StatefulWidget {
 }
 
 class _newTaskState extends State<newTask> {
+
   var formkey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
   String title = '';
   String description = '';
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Container(
       decoration: BoxDecoration(color: Colors.white,
       borderRadius: BorderRadius.circular(25)),
@@ -48,24 +53,11 @@ class _newTaskState extends State<newTask> {
                         )),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.all(20),
-                  child: TextFormField(
-                    onChanged: (text){
-                      description = text;
-                    },
-                    validator: (textValue) {
-                      if (textValue == null || textValue.isEmpty) {
-                        return 'Please enter task description';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        labelText: 'Description',
-                        labelStyle: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                  ),
-                ),
+                Text('Select Time :',style: TextStyle(
+                  color: provider.isDarkMode()?Colors.white:Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+                ),)
               ],
             ),
           ),
