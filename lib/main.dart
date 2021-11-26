@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
     var provider = Provider.of<AppConfigProvider>(context);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.routeName: (buildContext) => HomeScreen(),
       },

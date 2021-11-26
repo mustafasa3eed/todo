@@ -14,7 +14,7 @@ class TodoList extends StatefulWidget {
 
 class _TodoListState extends State<TodoList> {
   DateTime selectedDay = DateTime.now();
-  DateTime focusedDay = DateTime.now();
+  DateTime initialDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,14 @@ class _TodoListState extends State<TodoList> {
         Container(
             color: Colors.white,
             child: CalendarTimeline(
-              initialDate: DateTime.now(),
+              initialDate: selectedDay,
               firstDate: DateTime.now(),
               lastDate: DateTime.now().add(Duration(days: 365)),
-              onDateSelected: (date){
-                selectedDay=date!;
+              onDateSelected: (day){
+                setState(() {
+                  selectedDay=day!;
+
+                });
               },
               leftMargin: 20,
               monthColor: Colors.blueGrey,
@@ -43,7 +46,9 @@ class _TodoListState extends State<TodoList> {
         Expanded(
             child: Scrollbar(
               child: StreamBuilder<QuerySnapshot<task>>(
-                  stream: getTasks().snapshots(),
+                  stream: getTasks()
+                  .where('dateTime',isEqualTo: selectedDay.getDateOnly().millisecondsSinceEpoch)
+                      .snapshots(),
                   builder: (BuildContext buildContext,
                       AsyncSnapshot<QuerySnapshot<task>> snapshot) {
                     if (snapshot.hasError) {

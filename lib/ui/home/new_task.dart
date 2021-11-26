@@ -76,12 +76,7 @@ class _newTaskState extends State<newTask> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.calendar_today,
-                    ),
-                  ),
+                  Icon(Icons.calendar_today),
                   Text(
                       '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
                     style: TextStyle(fontSize: 18),),
