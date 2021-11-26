@@ -27,7 +27,9 @@ class _TodoListState extends State<TodoList> {
             initialDate: DateTime.now(),
             firstDate: DateTime.now(),
             lastDate: DateTime.now().add(Duration(days: 365)),
-            onDateSelected: (date) => print(date),
+            onDateSelected: (date){
+              selectedDay=date!;
+            },
             leftMargin: 20,
             monthColor: Colors.blueGrey,
             dayColor: Colors.teal[200],
