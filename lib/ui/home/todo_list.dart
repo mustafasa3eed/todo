@@ -22,45 +22,46 @@ class _TodoListState extends State<TodoList> {
     return Column(
       children: [
         Container(
-          color: Colors.white,
-          child: CalendarTimeline(
-            initialDate: selectedDay,
-            firstDate: DateTime.now(),
-            lastDate: DateTime.now().add(Duration(days: 365)),
-            onDateSelected: (date){
-              selectedDay=date!;
-            },
-            leftMargin: 20,
-            monthColor: Colors.blueGrey,
-            dayColor: Colors.teal[200],
-            activeDayColor: Colors.white,
-            activeBackgroundDayColor: Colors.redAccent[100],
-            dotsColor: Color(0xFF333A47),
-            selectableDayPredicate: (date) => date.day != 23,
-          )
+            color: Colors.white,
+            child: CalendarTimeline(
+              initialDate: DateTime.now(),
+              firstDate: DateTime.now(),
+              lastDate: DateTime.now().add(Duration(days: 365)),
+              onDateSelected: (date){
+                selectedDay=date!;
+              },
+              leftMargin: 20,
+              monthColor: Colors.blueGrey,
+              dayColor: Colors.teal[200],
+              activeDayColor: Colors.white,
+              activeBackgroundDayColor: Colors.redAccent[100],
+              dotsColor: Color(0xFF333A47),
+              selectableDayPredicate: (date) => date.day != 23,
+              locale: 'en_ISO',
+            )
         ),
         Expanded(
             child: Scrollbar(
-          child: StreamBuilder<QuerySnapshot<task>>(
-              stream: getTasks().where('dateTime',isEqualTo: selectedDay.millisecondsSinceEpoch).snapshots(),
-              builder: (BuildContext buildContext,
-                  AsyncSnapshot<QuerySnapshot<task>> snapshot) {
-                if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                } else if (snapshot.connectionState ==
-                    ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                List<task> item =
+              child: StreamBuilder<QuerySnapshot<task>>(
+                  stream: getTasks().snapshots(),
+                  builder: (BuildContext buildContext,
+                      AsyncSnapshot<QuerySnapshot<task>> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text(snapshot.error.toString());
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    List<task> item =
                     snapshot.data!.docs.map((e) => e.data()).toList();
-                return ListView.builder(
-                  itemBuilder: (buildContext, index) {
-                    return TodoWidget(item[index]);
-                  },
-                  itemCount: item.length,
-                );
-              }),
-        )),
+                    return ListView.builder(
+                      itemBuilder: (buildContext, index) {
+                        return TodoWidget(item[index]);
+                      },
+                      itemCount: item.length,
+                    );
+                  }),
+            )),
       ],
     );
   }
