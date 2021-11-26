@@ -25,3 +25,7 @@ Future<void> deleteTask(task item){
   return itemDoc.delete();
 
 }
+isDone(task item){
+ CollectionReference taskRef =getTasks();
+ taskRef.doc(item.id).update({'isDone':item.isDone?false:true});
+}

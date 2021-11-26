@@ -76,7 +76,7 @@ class TodoWidget extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Theme.of(context).primaryColor,
+                  color:item.isDone?MyThemeData.greenColor:Theme.of(context).primaryColor,
                 ),
                 margin: EdgeInsets.all(10),
                 width: 4,
@@ -88,7 +88,11 @@ class TodoWidget extends StatelessWidget {
                     children: [
                       Text(
                         item.title,
-                        style: TextStyle(
+                        style: item.isDone?TextStyle(
+                          color: MyThemeData.greenColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)
+                            :TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
@@ -97,23 +101,37 @@ class TodoWidget extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.access_time)
+                              Icon(Icons.access_time),
                             ],
                           )
                         ],
                       ),
                     ],
                   )),
-              Container(
-                width: 69,
-                height: 34,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(8)),
-                margin: EdgeInsets.all(10),
-                child: ImageIcon(
-                  AssetImage('assets/images/icon-check.png'),
-                  color: Colors.white,
+              InkWell(
+                onTap: (){
+                  isDone(item);
+                },
+                child: item.isDone?
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: Text('Done!',style: TextStyle(
+                    color: MyThemeData.greenColor,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),),
+                ):
+                Container(
+                  width: 69,
+                  height: 34,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(8)),
+                  margin: EdgeInsets.all(10),
+                  child: ImageIcon(
+                    AssetImage('assets/images/icon-check.png'),
+                    color: Colors.white,
+                  ),
                 ),
               )
             ],
