@@ -7,6 +7,7 @@ import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo/ui/home/theme.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 class TodoWidget extends StatelessWidget {
   task item;
 
@@ -22,20 +23,20 @@ class TodoWidget extends StatelessWidget {
         actions: [
           IconSlideAction(
             onTap: () {
-              deleteTask(item).then((value){
-                Fluttertoast.showToast(
-                  msg: 'Task deleted successfully!',toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.SNACKBAR,
-                  timeInSecForIosWeb: 1,
-                  textColor: Colors.red,
-                  backgroundColor: Colors.white,
-                  fontSize: 16,
-                );
-              }).onError((error,stackTrace){
-
-              }).timeout(Duration(seconds: 10),onTimeout:(){
-
-              });
+              deleteTask(item)
+                  .then((value) {
+                    Fluttertoast.showToast(
+                      msg: 'Task deleted successfully!',
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.SNACKBAR,
+                      timeInSecForIosWeb: 1,
+                      textColor: Colors.red,
+                      backgroundColor: Colors.white,
+                      fontSize: 16,
+                    );
+                  })
+                  .onError((error, stackTrace) {})
+                  .timeout(Duration(seconds: 10), onTimeout: () {});
             },
             color: Colors.transparent,
             iconWidget: Container(
@@ -66,7 +67,9 @@ class TodoWidget extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+            color: provider.isDarkMode()
+                ? MyThemeData.primaryColorDark
+                : Colors.white,
           ),
           margin: EdgeInsets.symmetric(vertical: 10),
           width: 352,
@@ -76,7 +79,9 @@ class TodoWidget extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color:item.isDone?MyThemeData.greenColor:Theme.of(context).primaryColor,
+                  color: item.isDone
+                      ? MyThemeData.greenColor
+                      : Theme.of(context).primaryColor,
                 ),
                 margin: EdgeInsets.all(10),
                 width: 4,
@@ -84,80 +89,83 @@ class TodoWidget extends StatelessWidget {
               ),
               Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        item.title,
-                        style: item.isDone?TextStyle(
-                          color: MyThemeData.greenColor,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    item.title,
+                    style: item.isDone
+                        ? TextStyle(
+                            color: MyThemeData.greenColor,
                             fontSize: 18,
                             fontWeight: FontWeight.bold)
-                            :TextStyle(
+                        : TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.access_time,
+                          color: provider.isDarkMode()
+                              ? Colors.white
+                              : Colors.black,
+                        ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.access_time,color: provider.isDarkMode()?Colors.white:Colors.black,),
-                          Text(
-                            item.description,
-                            style: item.isDone?TextStyle(
+                      Text(
+                        item.description,
+                        style: item.isDone
+                            ? TextStyle(
                                 color: MyThemeData.greenColor,
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold)
-                                :TextStyle(
-                                color: provider.isDarkMode()?Colors.white:Colors.black,
+                            : TextStyle(
+                                color: provider.isDarkMode()
+                                    ? Colors.white
+                                    : Colors.black,
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      )
-                      // Text(
-                      //   item.description,
-                      //   style: item.isDone?TextStyle(
-                      //       color: MyThemeData.greenColor,
-                      //       fontSize: 10,
-                      //       fontWeight: FontWeight.bold)
-                      //       :TextStyle(
-                      //       color:item.isDone?MyThemeData.greenColor:Theme.of(context).primaryColor,
-                      //       fontSize: 12,
-                      //       fontWeight: FontWeight.bold),
-                      // ),
-
+                      ),
                     ],
-                  )),
+                  )
+                ],
+              )),
               InkWell(
-                onTap: (){
+                onTap: () {
                   isDone(item);
                 },
-                child: item.isDone?
-                Container(
-                  margin: EdgeInsets.all(10),
-                  child: Text('Done!',style: TextStyle(
-                    color: MyThemeData.greenColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),),
-                ):
-                Container(
-                  width: 69,
-                  height: 34,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  margin: EdgeInsets.all(10),
-                  child: ImageIcon(
-                    AssetImage('assets/images/icon-check.png'),
-                    color: Colors.white,
-                  ),
-                ),
+                child: item.isDone
+                    ? Container(
+                        margin: EdgeInsets.all(10),
+                        child: Text(
+                          'Done!',
+                          style: TextStyle(
+                            color: MyThemeData.greenColor,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    : Container(
+                        width: 69,
+                        height: 34,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(8)),
+                        margin: EdgeInsets.all(10),
+                        child: ImageIcon(
+                          AssetImage('assets/images/icon-check.png'),
+                          color: Colors.white,
+                        ),
+                      ),
               )
             ],
           ),
         ),
       ),
-    );  }
+    );
+  }
 }
-

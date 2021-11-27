@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo/ui/home/theme.dart';
 
 class ThemeMenu extends StatefulWidget {
   @override
@@ -13,6 +14,12 @@ class _ThemeMenuState extends State<ThemeMenu> {
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
     return Container(
+      margin: EdgeInsets.only(left: 20,right: 20, bottom: 200),
+      height: 100,
+      decoration: BoxDecoration(
+        color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+        borderRadius: BorderRadius.circular(25),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -48,8 +55,8 @@ class _ThemeMenuState extends State<ThemeMenu> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text (text,style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 20
+              color: Colors.blue,
+              fontSize: 20,
           )),
           Icon(Icons.check,color: Theme.of(context).primaryColor,),
         ],
@@ -64,7 +71,8 @@ class _ThemeMenuState extends State<ThemeMenu> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text (text,style: TextStyle(
-              fontSize: 20
+              fontSize: 20,
+            color: Colors.black
           )),
         ],
       ),
