@@ -98,14 +98,34 @@ class TodoWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            children: [
-                              Icon(Icons.access_time),
-                            ],
-                          )
+                          Icon(Icons.access_time,color: provider.isDarkMode()?Colors.white:Colors.black,),
+                          Text(
+                            item.description,
+                            style: item.isDone?TextStyle(
+                                color: MyThemeData.greenColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold)
+                                :TextStyle(
+                                color: provider.isDarkMode()?Colors.white:Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ],
-                      ),
+                      )
+                      // Text(
+                      //   item.description,
+                      //   style: item.isDone?TextStyle(
+                      //       color: MyThemeData.greenColor,
+                      //       fontSize: 10,
+                      //       fontWeight: FontWeight.bold)
+                      //       :TextStyle(
+                      //       color:item.isDone?MyThemeData.greenColor:Theme.of(context).primaryColor,
+                      //       fontSize: 12,
+                      //       fontWeight: FontWeight.bold),
+                      // ),
+
                     ],
                   )),
               InkWell(

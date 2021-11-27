@@ -53,6 +53,26 @@ class _newTaskState extends State<newTask> {
                         )),
                   ),
                 ),
+                Container(
+                  margin: EdgeInsets.all(20),
+                  child: TextFormField(
+                    onChanged: (text){
+                      description = text;
+                    },
+                    validator: (textValue) {
+                      if (textValue == null || textValue.isEmpty) {
+                        return 'Please enter task description';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Description',
+                        labelStyle: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
+                ),
                 Text('Select Time :',style: TextStyle(
                   color: provider.isDarkMode()?Colors.white:Colors.black,
                   fontSize: 18,
