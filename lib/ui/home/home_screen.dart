@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
       context:context,
       builder:(BuildContext context){
         return(
-            newTask()
+            NewTask()
         );
     });
   }

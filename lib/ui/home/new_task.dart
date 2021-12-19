@@ -3,12 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:todo/data/firebase.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 
-class newTask extends StatefulWidget {
+class NewTask extends StatefulWidget {
+  const NewTask({Key? key}) : super(key: key);
+
   @override
-  State<newTask> createState() => _newTaskState();
+  State<NewTask> createState() => _NewTaskState();
 }
 
-class _newTaskState extends State<newTask> {
+class _NewTaskState extends State<NewTask> {
 
   var formkey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
@@ -24,7 +26,7 @@ class _newTaskState extends State<newTask> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Add a New Task',
+          const Text('Add a New Task',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -34,7 +36,7 @@ class _newTaskState extends State<newTask> {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
                   child: TextFormField(
                     onChanged: (text){
                       title = text;
@@ -45,7 +47,7 @@ class _newTaskState extends State<newTask> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: 'Title',
                         labelStyle: TextStyle(
                           fontSize: 20,
@@ -54,7 +56,7 @@ class _newTaskState extends State<newTask> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
                   child: TextFormField(
                     onChanged: (text){
                       description = text;
@@ -65,7 +67,7 @@ class _newTaskState extends State<newTask> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: 'Description',
                         labelStyle: TextStyle(
                           fontSize: 20,
@@ -88,17 +90,17 @@ class _newTaskState extends State<newTask> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.calendar_today),
+                  const Icon(Icons.calendar_today),
                   Text(
                       '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
-                    style: TextStyle(fontSize: 18),),
+                    style: const TextStyle(fontSize: 18),),
                 ],
               )),
           ElevatedButton(
               onPressed: () {
                 addToDo();
               },
-              child: Text('Add'))
+              child: const Text('Add'))
         ],
       ),
     );
@@ -112,7 +114,7 @@ class _newTaskState extends State<newTask> {
       Navigator.pop(context);
     }).onError((error, stackTrace) {
       "Can't add your task, please try again";
-    }).timeout(Duration(seconds: 10),onTimeout: (){
+    }).timeout(const Duration(seconds: 10),onTimeout: (){
 
     });
   }
@@ -123,7 +125,7 @@ class _newTaskState extends State<newTask> {
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(Duration(days: 365)));
+        lastDate: DateTime.now().add(const Duration(days: 365)));
     if (newSelectedDate != null) {
       selectedDate = newSelectedDate;
       setState(() {

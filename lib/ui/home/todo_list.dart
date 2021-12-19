@@ -1,6 +1,5 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/data/firebase.dart';
 import 'package:todo/data/task.dart';
@@ -14,7 +13,7 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoListState extends State<TodoList> {
-  DateTime selectedDay = DateTime.now();
+  static late DateTime selectedDay;
   DateTime initialDay = DateTime.now();
   @override
   void initState() {
@@ -28,28 +27,30 @@ class _TodoListState extends State<TodoList> {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<AppConfigProvider>(context);
     return Column(
       children: [
-        CalendarTimeline(
-          showYears: true,
-          initialDate: selectedDay,
-          firstDate: DateTime.now(),
-          lastDate: DateTime.now().add(Duration(days: 365)),
-          onDateSelected: (date) {
-            setState(() {
-              selectedDay = date!;
-            });
-          },
-          leftMargin: 20,
-          monthColor: Colors.white70,
-          dayColor: Colors.teal[200],
-          dayNameColor: Color(0xFF333A47),
-          activeDayColor: Colors.white,
-          activeBackgroundDayColor: Colors.redAccent[100],
-          dotsColor: Color(0xFF333A47),
-          selectableDayPredicate: (date) => date.day != 0,
-          locale: 'en',
+        Container(
+          color: Colors.blue,
+          child: CalendarTimeline(
+            showYears: true,
+            initialDate: selectedDay,
+            firstDate: DateTime.now(),
+            lastDate: DateTime.now().add(Duration(days: 365)),
+            onDateSelected: (date) {
+              setState(() {
+                selectedDay = date!;
+              });
+            },
+            leftMargin: 20,
+            monthColor: Colors.white70,
+            dayColor: Colors.teal[200],
+            dayNameColor: Color(0xFF333A47),
+            activeDayColor: Colors.white,
+            activeBackgroundDayColor: Colors.redAccent[100],
+            dotsColor: Color(0xFF333A47),
+            selectableDayPredicate: (date) => date.day != 0,
+            locale: 'en',
+          ),
         ),
         // Container(
         //   color: Colors.blue,
