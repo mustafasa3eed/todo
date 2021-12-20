@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo/ui/home/theme.dart';
 
-class LanguageMenu extends StatefulWidget {
-
+class ThemeMenu extends StatefulWidget {
   @override
-  State<LanguageMenu> createState() => _LanguageMenuState();
+  State<ThemeMenu> createState() => _ThemeMenuState();
 }
 
-class _LanguageMenuState extends State<LanguageMenu> {
+class _ThemeMenuState extends State<ThemeMenu> {
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
+
     return Container(
       margin: EdgeInsets.only(left: 20,right: 20, bottom: 200),
       height: 100,
@@ -24,40 +26,49 @@ class _LanguageMenuState extends State<LanguageMenu> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           InkWell(
-            onTap: (){
-              provider.changeLanguage('en');
+            onTap: () {
+              provider.changeTheme(ThemeMode.light);
             },
-            child: provider.appLanguage == 'en'?
-            selectedLanguage('English'):unSelectedLanguage('English')
-
+            child: provider.isDarkMode()
+                ? unSelectedTheme(
+                AppLocalizations.of(context)!.light)
+                : selectedTheme(
+                AppLocalizations.of(context)!.light),
           ),
           InkWell(
-            onTap: (){
-              provider.changeLanguage('ar');
+            onTap: () {
+              provider.changeTheme(ThemeMode.dark);
             },
-              child: provider.appLanguage == 'ar'?
-                selectedLanguage('العربية'):unSelectedLanguage('العربية')),
+            child: provider.isDarkMode()
+                ? selectedTheme(
+                AppLocalizations.of(context)!.dark)
+                : unSelectedTheme(
+                AppLocalizations.of(context)!.dark),
+          )
         ],
       ),
     );
   }
 
-  Widget selectedLanguage(String text){
+  Widget selectedTheme(String text){
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text (text,style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 20
+              color: Colors.blue,
+              fontSize: 20,
           )),
           Icon(Icons.check,color: Theme.of(context).primaryColor,),
         ],
       ),
     );
   }
-  Widget unSelectedLanguage(String text){
+
+  Widget unSelectedTheme(String text){
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
@@ -65,7 +76,7 @@ class _LanguageMenuState extends State<LanguageMenu> {
         children: [
           Text (text,style: TextStyle(
               fontSize: 20,
-            color: Colors.white
+            color: provider.isDarkMode()?Colors.white:Colors.black
           )),
         ],
       ),

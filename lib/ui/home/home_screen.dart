@@ -18,51 +18,54 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
-    return Scaffold(
-      backgroundColor: provider.isDarkMode()?MyThemeData.darkScaffoldBackground:MyThemeData.lightScaffoldBackground ,
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text('Todo App'),
-        centerTitle: false,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        shape:  StadiumBorder(
-            side: BorderSide(
-                color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white, width:4)),
-        child: const Icon(Icons.add),
-        onPressed: () {
-          newTaskSheet();
-        },
-      ),
-      bottomNavigationBar:
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8)
-            ),
-            child: BottomAppBar(
-              color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
-              shape: const CircularNotchedRectangle(),
-              notchMargin: 8,
-              clipBehavior: Clip.antiAlias,
-              child: BottomNavigationBar(
-                backgroundColor: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
-                elevation: 0,
-                currentIndex: currentIndex,
-                onTap: (index){
-                  currentIndex= index;
-                  setState(() {});
-                },
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                items: [
-                  const BottomNavigationBarItem(icon: Icon(Icons.list,size: 33,), label: ''),
-                  const BottomNavigationBarItem(icon: Icon(Icons.settings_outlined, size: 33,),label: ''),
-                ],
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: provider.isDarkMode()?MyThemeData.darkScaffoldBackground:MyThemeData.lightScaffoldBackground ,
+        appBar: AppBar(
+          elevation: 0,
+          title: const Text('Todo App'),
+          centerTitle: false,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          shape:  StadiumBorder(
+              side: BorderSide(
+                  color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white, width:4)),
+          child: const Icon(Icons.add),
+          onPressed: () {
+            newTaskSheet();
+          },
+        ),
+        bottomNavigationBar:
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8)
+              ),
+              child: BottomAppBar(
+                color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+                shape: const CircularNotchedRectangle(),
+                notchMargin: 8,
+                clipBehavior: Clip.antiAlias,
+                child: BottomNavigationBar(
+                  backgroundColor: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+                  elevation: 0,
+                  currentIndex: currentIndex,
+                  onTap: (index){
+                    currentIndex= index;
+                    setState(() {});
+                  },
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  items: [
+                    const BottomNavigationBarItem(icon: Icon(Icons.list,size: 33,), label: ''),
+                    const BottomNavigationBarItem(icon: Icon(Icons.settings_outlined, size: 33,),label: ''),
+                  ],
+                ),
               ),
             ),
-          ),
-      body: tabs[currentIndex],
+        body: tabs[currentIndex],
+      ),
     );
   }
   List<Widget> tabs = [
@@ -71,11 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   void newTaskSheet(){
     showModalBottomSheet<void>(
+      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       context:context,
       builder:(BuildContext context){
         return(
-            NewTask()
+            const NewTask()
         );
     });
   }

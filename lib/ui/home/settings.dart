@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo/ui/home/theme.dart';
-import 'package:todo/ui/settings/ThemeMenu.dart';
-import 'package:todo/ui/settings/LanguageMenu.dart';
+import 'package:todo/ui/settings/theme_menu.dart';
+import 'package:todo/ui/settings/language_menu.dart';
 
 
 class Settings extends StatefulWidget {
@@ -22,19 +22,15 @@ class _SettingsState extends State<Settings> {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Row(
-            children: [
-              Text(AppLocalizations.of(context)!.language,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: provider.isDarkMode()?Colors.white:Colors.black ),),
-            ],
-          ),
+          child: Text(AppLocalizations.of(context)!.language,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: provider.isDarkMode()?Colors.white:Colors.black ),),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          padding: EdgeInsets.all(10),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             border: Border.all(color: provider.isDarkMode()?Colors.blue:Colors.transparent),
             color: provider.isDarkMode()?Colors.transparent:Colors.white,
@@ -58,16 +54,12 @@ class _SettingsState extends State<Settings> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Row(
-            children: [
-              Text(AppLocalizations.of(context)!.theme,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: provider.isDarkMode()?Colors.white:Colors.black,
-                  fontWeight: FontWeight.bold
-                ),),
-            ],
-          ),
+          child: Text(AppLocalizations.of(context)!.theme,
+            style: TextStyle(
+                fontSize: 25,
+                color: provider.isDarkMode()?Colors.white:Colors.black,
+              fontWeight: FontWeight.bold
+            ),),
         ),
 
         Container(

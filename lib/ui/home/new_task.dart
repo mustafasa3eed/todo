@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/data/firebase.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:todo/ui/home/theme.dart';
 
 class NewTask extends StatefulWidget {
   const NewTask({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _NewTaskState extends State<NewTask> {
     var provider = Provider.of<AppConfigProvider>(context);
 
     return Container(
-      decoration: BoxDecoration(color: Colors.white,
+      decoration: BoxDecoration(color:provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
       borderRadius: BorderRadius.circular(25)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +80,10 @@ class _NewTaskState extends State<NewTask> {
                   color: provider.isDarkMode()?Colors.white:Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.bold
-                ),)
+                ),),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height*0.04,
+                )
               ],
             ),
           ),
@@ -90,13 +94,20 @@ class _NewTaskState extends State<NewTask> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.calendar_today),
+                   Icon(Icons.calendar_today,
+                    color: provider.isDarkMode()?Colors.white:Colors.black,),
                   Text(
                       '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
-                    style: const TextStyle(fontSize: 18),),
+                    style: TextStyle(fontSize: 18,color: provider.isDarkMode()?Colors.white:Colors.black,),
+                  ),
                 ],
               )),
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.04,
+          ),
           ElevatedButton(
+            style:
+              ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),),
               onPressed: () {
                 addToDo();
               },
