@@ -18,7 +18,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
@@ -63,8 +63,8 @@ class _SettingsState extends State<Settings> {
         ),
 
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          padding: EdgeInsets.all(10),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             border: Border.all(color: provider.isDarkMode()?Colors.blue:Colors.transparent),
             color: provider.isDarkMode()?Colors.transparent:Colors.white,

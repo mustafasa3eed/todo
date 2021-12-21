@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todo/data/firebase.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:todo/ui/home/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class NewTask extends StatefulWidget {
   const NewTask({Key? key}) : super(key: key);
@@ -27,8 +29,9 @@ class _NewTaskState extends State<NewTask> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Add a New Task',
+           Text(AppLocalizations.of(context)!.sheet,
               style: TextStyle(
+                color: provider.isDarkMode()?Colors.white:Colors.black,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               )),
@@ -39,45 +42,53 @@ class _NewTaskState extends State<NewTask> {
                 Container(
                   margin: const EdgeInsets.all(20),
                   child: TextFormField(
-                    onChanged: (text){
+                    style: TextStyle(
+                      color: provider.isDarkMode()?Colors.white:Colors.black,
+                    ),
+                    onChanged: (text ){
                       title = text;
                     },
                     validator: (textValue) {
                       if (textValue == null || textValue.isEmpty) {
-                        return 'Please enter task title';
+                        return AppLocalizations.of(context)!.title_validation;
                       }
                       return null;
                     },
-                    decoration: const InputDecoration(
-                        labelText: 'Title',
+                    decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.title,
                         labelStyle: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: provider.isDarkMode()?Colors.white24:Colors.black38,
                         )),
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.all(20),
                   child: TextFormField(
+                    style: TextStyle(
+                      color: provider.isDarkMode()?Colors.white:Colors.black,
+                    ),
                     onChanged: (text){
                       description = text;
                     },
                     validator: (textValue) {
                       if (textValue == null || textValue.isEmpty) {
-                        return 'Please enter task description';
+                        return AppLocalizations.of(context)!.details_validation;
                       }
                       return null;
                     },
-                    decoration: const InputDecoration(
-                        labelText: 'Description',
+                    decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.details,
                         labelStyle: TextStyle(
+                          color: provider.isDarkMode()?Colors.white24:Colors.black38,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         )),
                   ),
                 ),
-                Text('Select Time :',style: TextStyle(
-                  color: provider.isDarkMode()?Colors.white:Colors.black,
+                Text(AppLocalizations.of(context)!.task_time,style: TextStyle(
+                    color: provider.isDarkMode()?Colors.white24:Colors.black38,
                   fontSize: 18,
                   fontWeight: FontWeight.bold
                 ),),
@@ -91,16 +102,17 @@ class _NewTaskState extends State<NewTask> {
               onTap: () {
                 taskDate();
               },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                   Icon(Icons.calendar_today,
-                    color: provider.isDarkMode()?Colors.white:Colors.black,),
-                  Text(
-                      '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
-                    style: TextStyle(fontSize: 18,color: provider.isDarkMode()?Colors.white:Colors.black,),
-                  ),
-                ],
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                        '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}',
+                      style: TextStyle(fontSize: 18,color: provider.isDarkMode()?Colors.white:Colors.black,),
+                    ),
+                  ],
+                ),
               )),
           SizedBox(
             height: MediaQuery.of(context).size.height*0.04,
@@ -111,7 +123,7 @@ class _NewTaskState extends State<NewTask> {
               onPressed: () {
                 addToDo();
               },
-              child: const Text('Add'))
+              child: Text(AppLocalizations.of(context)!.add))
         ],
       ),
     );

@@ -26,7 +26,7 @@ class TodoWidget extends StatelessWidget {
               deleteTask(item)
                   .then((value) {
                     Fluttertoast.showToast(
-                      msg: 'Task deleted successfully!',
+                      msg: AppLocalizations.of(context)!.task_deleted,
                       toastLength: Toast.LENGTH_LONG,
                       gravity: ToastGravity.SNACKBAR,
                       timeInSecForIosWeb: 1,
@@ -141,7 +141,7 @@ class TodoWidget extends StatelessWidget {
                     ? Container(
                         margin: EdgeInsets.all(10),
                         child: Text(
-                          'Done!',
+                          AppLocalizations.of(context)!.done,
                           style: TextStyle(
                             color: MyThemeData.greenColor,
                             fontSize: 22,

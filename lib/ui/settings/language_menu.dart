@@ -28,6 +28,7 @@ class _LanguageMenuState extends State<LanguageMenu> {
           InkWell(
             onTap: (){
               provider.changeLanguage('en');
+              Navigator.pop(context);
             },
             child: provider.appLanguage == 'en'?
             selectedLanguage('English'):unSelectedLanguage('English')
@@ -36,6 +37,7 @@ class _LanguageMenuState extends State<LanguageMenu> {
           InkWell(
             onTap: (){
               provider.changeLanguage('ar');
+              Navigator.pop(context);
             },
               child: provider.appLanguage == 'ar'?
                 selectedLanguage('العربية'):unSelectedLanguage('العربية')),

@@ -1,10 +1,21 @@
 {
   "settings": "Settings",
   "language": "Language",
-  "theme" : "Theme",
-  "english" : "English",
-  "arabic" : "Arabic",
-  "light" : "Light",
-  "dark" : "Dark",
-  "delete": "Delete"
+  "theme": "Theme",
+  "english": "English",
+  "arabic": "Arabic",
+  "light": "Light",
+  "dark": "Dark",
+  "delete": "Delete",
+  "sheet": "Add a new Task",
+  "title": "title",
+  "details": "Details",
+  "task_time": "Select Date",
+  "tasks_list": "Tasks List",
+  "title_validation": "Please enter task title",
+  "details_validation": "Please enter task details",
+  "done": "Done!",
+  "add": "Add",
+  "task_deleted": "Task deleted successfully!"
+
 }

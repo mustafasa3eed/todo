@@ -28,6 +28,7 @@ class _ThemeMenuState extends State<ThemeMenu> {
           InkWell(
             onTap: () {
               provider.changeTheme(ThemeMode.light);
+              Navigator.pop(context);
             },
             child: provider.isDarkMode()
                 ? unSelectedTheme(
@@ -38,6 +39,7 @@ class _ThemeMenuState extends State<ThemeMenu> {
           InkWell(
             onTap: () {
               provider.changeTheme(ThemeMode.dark);
+              Navigator.pop(context);
             },
             child: provider.isDarkMode()
                 ? selectedTheme(

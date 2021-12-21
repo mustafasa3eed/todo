@@ -5,9 +5,13 @@ import 'package:todo/ui/home/theme.dart';
 import 'package:todo/ui/home/todo_list.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
+
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -57,9 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
-                  items: [
-                    const BottomNavigationBarItem(icon: Icon(Icons.list,size: 33,), label: ''),
-                    const BottomNavigationBarItem(icon: Icon(Icons.settings_outlined, size: 33,),label: ''),
+                  items:  [
+                    BottomNavigationBarItem(icon: const Icon(Icons.list,size: 33,), label: '',tooltip: AppLocalizations.of(context)!.tasks_list),
+                    BottomNavigationBarItem(icon: const Icon(Icons.settings_outlined, size: 33,),label: '',tooltip: AppLocalizations.of(context)!.settings),
                   ],
                 ),
               ),
@@ -74,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   void newTaskSheet(){
     showModalBottomSheet<void>(
-      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       context:context,
       builder:(BuildContext context){
