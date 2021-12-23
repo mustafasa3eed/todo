@@ -8,6 +8,8 @@ import 'package:todo/ui/settings/language_menu.dart';
 
 
 class Settings extends StatefulWidget {
+  const Settings({Key? key}) : super(key: key);
+
 
   @override
   State<Settings> createState() => _SettingsState();
