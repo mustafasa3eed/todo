@@ -17,8 +17,6 @@ class EditTask extends StatefulWidget {
 class _EditTaskState extends State<EditTask> {
   var formkey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
-  String title = '';
-  String description = '';
   late task item;
   @override
   Widget build(BuildContext context) {
@@ -178,24 +176,13 @@ class _EditTaskState extends State<EditTask> {
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(const Duration(days: 365)));
     if (newSelectedDate != null) {
-      selectedDate = newSelectedDate;
+      item.dateTime = newSelectedDate;
       setState(() {});
     }
-  }
-  void addToDo() {
-    if (!formkey.currentState!.validate()) {
-      return;
-    }
-    pushToFirestore(title, description, selectedDate).then((value) {
-      Navigator.pop(context);
-    }).onError((error, stackTrace) {
-      "Can't add your task, please try again";
-    }).timeout(const Duration(seconds: 10), onTimeout: () {});
   }
   editTask(){
     editTaskDetails(item).then((value){
       Navigator.pop(context);
-
     });
   }
 
