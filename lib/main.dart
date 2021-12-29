@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todo/ui/home/edit_task_screen.dart';
 import 'package:todo/ui/home/home_screen.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -30,7 +31,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        HomeScreen.routeName: (buildContext) => HomeScreen(),
+        HomeScreen.routeName: (buildContext) => const HomeScreen(),
+        EditTask.routeName : (buildContext) => const EditTask(),
+
       },
       initialRoute: HomeScreen.routeName,
       title: 'Flutter Demo',

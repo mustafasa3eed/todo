@@ -16,6 +16,7 @@
   "details_validation": "Please enter task details",
   "done": "Done!",
   "add": "Add",
-  "task_deleted": "Task deleted successfully!"
+  "task_deleted": "Task deleted successfully!",
+  "save_changes" : "Save Changes"
 
 }

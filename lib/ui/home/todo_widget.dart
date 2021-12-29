@@ -5,6 +5,7 @@ import 'package:todo/data/firebase.dart';
 import 'package:todo/data/task.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo/ui/home/edit_task_screen.dart';
 import 'package:todo/ui/home/theme.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -17,9 +18,9 @@ class TodoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Slidable(
-        actionPane: SlidableDrawerActionPane(),
+        actionPane: const SlidableDrawerActionPane(),
         actions: [
           IconSlideAction(
             onTap: () {
@@ -36,7 +37,7 @@ class TodoWidget extends StatelessWidget {
                     );
                   })
                   .onError((error, stackTrace) {})
-                  .timeout(Duration(seconds: 10), onTimeout: () {});
+                  .timeout(const Duration(seconds: 10), onTimeout: () {});
             },
             color: Colors.transparent,
             iconWidget: Container(
@@ -45,18 +46,18 @@ class TodoWidget extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
                       bottomLeft: Radius.circular(12))),
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.delete,
                     color: Colors.white,
                   ),
                   Text(
                     AppLocalizations.of(context)!.delete,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     textAlign: TextAlign.center,
                   )
                 ],
@@ -64,105 +65,110 @@ class TodoWidget extends StatelessWidget {
             ),
           )
         ],
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: provider.isDarkMode()
-                ? MyThemeData.primaryColorDark
-                : Colors.white,
-          ),
-          margin: EdgeInsets.symmetric(vertical: 10),
-          width: 352,
-          height: 115,
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: item.isDone
-                      ? MyThemeData.greenColor
-                      : Theme.of(context).primaryColor,
-                ),
-                margin: EdgeInsets.all(10),
-                width: 4,
-                height: 62,
-              ),
-              Expanded(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    item.title,
-                    style: item.isDone
-                        ? TextStyle(
-                            color: MyThemeData.greenColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)
-                        : TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+        child: InkWell(
+          onTap: (){
+            Navigator.pushNamed(context, EditTask.routeName, arguments: item);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: provider.isDarkMode()
+                  ? MyThemeData.primaryColorDark
+                  : Colors.white,
+            ),
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            width: 352,
+            height: 115,
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: item.isDone
+                        ? MyThemeData.greenColor
+                        : Theme.of(context).primaryColor,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.access_time,
-                          color: provider.isDarkMode()
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                      ),
-                      Text(
-                        item.description,
-                        style: item.isDone
-                            ? TextStyle(
-                                color: MyThemeData.greenColor,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold)
-                            : TextStyle(
-                                color: provider.isDarkMode()
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  )
-                ],
-              )),
-              InkWell(
-                onTap: () {
-                  isDone(item);
-                },
-                child: item.isDone
-                    ? Container(
-                        margin: EdgeInsets.all(10),
-                        child: Text(
-                          AppLocalizations.of(context)!.done,
-                          style: TextStyle(
-                            color: MyThemeData.greenColor,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+                  margin: const EdgeInsets.all(10),
+                  width: 4,
+                  height: 62,
+                ),
+                Expanded(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      item.title,
+                      style: item.isDone
+                          ? const TextStyle(
+                              color: MyThemeData.greenColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold)
+                          : TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.access_time,
+                            color: provider.isDarkMode()
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
-                      )
-                    : Container(
-                        width: 69,
-                        height: 34,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(8)),
-                        margin: EdgeInsets.all(10),
-                        child: ImageIcon(
-                          AssetImage('assets/images/icon-check.png'),
-                          color: Colors.white,
+                        Text(
+                          item.description,
+                          style: item.isDone
+                              ? const TextStyle(
+                                  color: MyThemeData.greenColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold)
+                              : TextStyle(
+                                  color: provider.isDarkMode()
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
                         ),
-                      ),
-              )
-            ],
+                      ],
+                    )
+                  ],
+                )),
+                InkWell(
+                  onTap: () {
+                    isDone(item);
+                  },
+                  child: item.isDone
+                      ? Container(
+                          margin: const EdgeInsets.all(10),
+                          child: Text(
+                            AppLocalizations.of(context)!.done,
+                            style: const TextStyle(
+                              color: MyThemeData.greenColor,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      : Container(
+                          width: 69,
+                          height: 34,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(8)),
+                          margin: const EdgeInsets.all(10),
+                          child: const ImageIcon(
+                            const AssetImage('assets/images/icon-check.png'),
+                            color: Colors.white,
+                          ),
+                        ),
+                )
+              ],
+            ),
           ),
         ),
       ),

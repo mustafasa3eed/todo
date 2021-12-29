@@ -3,7 +3,7 @@ import 'package:todo/data/task.dart';
 
 extension MyDateExtension on DateTime{
   DateTime getDateOnly(){
-    return DateTime(this.year,this.month,this.day);
+    return DateTime(year,month,day);
   }
 }
 
@@ -28,4 +28,13 @@ Future<void> deleteTask(task item){
 isDone(task item){
  CollectionReference taskRef =getTasks();
  taskRef.doc(item.id).update({'isDone':item.isDone?false:true});
+}
+
+Future<void> editTaskDetails(task item){
+ CollectionReference taskRef =getTasks();
+ return taskRef.doc(item.id).update({
+   'title':item.title,
+   'description':item.description,
+   'dateTime': item.dateTime.getDateOnly().millisecondsSinceEpoch
+ });
 }
