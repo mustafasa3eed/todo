@@ -26,12 +26,12 @@ Future<void> deleteTask(task item){
 
 }
 isDone(task item){
- CollectionReference taskRef =getTasks();
+ CollectionReference taskRef = getTasks();
  taskRef.doc(item.id).update({'isDone':item.isDone?false:true});
 }
 
 Future<void> editTaskDetails(task item){
- CollectionReference taskRef =getTasks();
+ CollectionReference taskRef = getTasks();
  return taskRef.doc(item.id).update({
    'title':item.title,
    'description':item.description,
