@@ -8,6 +8,8 @@ import 'package:todo/ui/home/todo_widget.dart';
 import 'package:provider/provider.dart';
 
 class TodoList extends StatefulWidget {
+  const TodoList({Key? key}) : super(key: key);
+
   @override
   State<TodoList> createState() => _TodoListState();
 }
@@ -27,6 +29,8 @@ class _TodoListState extends State<TodoList> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Column(
       children: [
         Container(
@@ -35,7 +39,7 @@ class _TodoListState extends State<TodoList> {
             showYears: true,
             initialDate: selectedDay,
             firstDate: DateTime.now(),
-            lastDate: DateTime.now().add(Duration(days: 365)),
+            lastDate: DateTime.now().add(const Duration(days: 365)),
             onDateSelected: (date) {
               setState(() {
                 selectedDay = date!;
@@ -44,12 +48,12 @@ class _TodoListState extends State<TodoList> {
             leftMargin: 20,
             monthColor: Colors.white70,
             dayColor: Colors.teal[200],
-            dayNameColor: Color(0xFF333A47),
+            dayNameColor: const Color(0xFF333A47),
             activeDayColor: Colors.white,
             activeBackgroundDayColor: Colors.redAccent[100],
-            dotsColor: Color(0xFF333A47),
+            dotsColor: const Color(0xFF333A47),
             selectableDayPredicate: (date) => date.day != 0,
-            locale: 'en',
+            locale: provider.appLanguage,
           ),
         ),
         // Container(
@@ -80,7 +84,7 @@ class _TodoListState extends State<TodoList> {
                     return Text(snapshot.error.toString());
                   } else if (snapshot.connectionState ==
                       ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                   List<task> item =
                   snapshot.data!.docs.map((e) => e.data()).toList();

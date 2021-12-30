@@ -15,10 +15,12 @@ void main() async {
       create: (buildContext) {
         return AppConfigProvider();
       },
-      child: MyApp()));
+      child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
