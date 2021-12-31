@@ -15,33 +15,35 @@ class _LanguageMenuState extends State<LanguageMenu> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
-    return Container(
-      margin: const EdgeInsets.only(left: 20,right: 20, bottom: 200),
-      height: 100,
-      decoration: BoxDecoration(
-        color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: (){
-              provider.changeLanguage('en');
-              Navigator.pop(context);
-            },
-            child: provider.appLanguage == 'en'?
-            selectedLanguage('English'):unSelectedLanguage('English')
+    return SingleChildScrollView(
+      child: Container(
+        margin: const EdgeInsets.only(left: 20,right: 20, bottom: 200),
+        height: 100,
+        decoration: BoxDecoration(
+          color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: (){
+                provider.changeLanguage('en');
+                Navigator.pop(context);
+              },
+              child: provider.appLanguage == 'en'?
+              selectedLanguage('English'):unSelectedLanguage('English')
 
-          ),
-          InkWell(
-            onTap: (){
-              provider.changeLanguage('ar');
-              Navigator.pop(context);
-            },
-              child: provider.appLanguage == 'ar'?
-                selectedLanguage('العربية'):unSelectedLanguage('العربية')),
-        ],
+            ),
+            InkWell(
+              onTap: (){
+                provider.changeLanguage('ar');
+                Navigator.pop(context);
+              },
+                child: provider.appLanguage == 'ar'?
+                  selectedLanguage('العربية'):unSelectedLanguage('العربية')),
+          ],
+        ),
       ),
     );
   }

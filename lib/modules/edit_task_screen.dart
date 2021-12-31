@@ -123,7 +123,7 @@ class _EditTaskState extends State<EditTask> {
                                 fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.04,
+                            height: MediaQuery.of(context).size.height * 0.05,
                           )
                         ],
                       ),
@@ -149,7 +149,7 @@ class _EditTaskState extends State<EditTask> {
                           ),
                         )),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -159,7 +159,11 @@ class _EditTaskState extends State<EditTask> {
                         onPressed: () {
                           editTask();
                         },
-                        child: Text(AppLocalizations.of(context)!.save_changes))
+                        child: Text(AppLocalizations.of(context)!.save_changes)),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                    )
+
                   ],
                 ),
               ),

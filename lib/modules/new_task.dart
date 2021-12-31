@@ -21,127 +21,137 @@ class _NewTaskState extends State<NewTask> {
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
 
-    return Container(
-      decoration: BoxDecoration(
-          color: provider.isDarkMode()
-              ? MyThemeData.primaryColorDark
-              : Colors.white,
-          borderRadius: BorderRadius.circular(25)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(AppLocalizations.of(context)!.sheet,
-              style: TextStyle(
-                color: provider.isDarkMode() ? Colors.white : Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              )),
-          Form(
-            key: formkey,
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(20),
-                  child: TextFormField(
-                    style: TextStyle(
-                      color:
-                          provider.isDarkMode() ? Colors.white : Colors.black,
-                    ),
-                    onChanged: (text) {
-                      title = text;
-                    },
-                    validator: (textValue) {
-                      if (textValue == null || textValue.isEmpty) {
-                        return AppLocalizations.of(context)!.title_validation;
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.title,
-                        labelStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: provider.isDarkMode()
-                              ? Colors.white24
-                              : Colors.black38,
-                        )),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(20),
-                  child: TextFormField(
-                    style: TextStyle(
-                      color:
-                          provider.isDarkMode() ? Colors.white : Colors.black,
-                    ),
-                    onChanged: (text) {
-                      description = text;
-                    },
-                    validator: (textValue) {
-                      if (textValue == null || textValue.isEmpty) {
-                        return AppLocalizations.of(context)!.details_validation;
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.details,
-                        labelStyle: TextStyle(
-                          color: provider.isDarkMode()
-                              ? Colors.white24
-                              : Colors.black38,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                ),
-                Text(
-                  AppLocalizations.of(context)!.task_time,
-                  style: TextStyle(
-                      color: provider.isDarkMode()
-                          ? Colors.white24
-                          : Colors.black38,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                )
-              ],
+    return SingleChildScrollView(
+      child: Container(
+        decoration: BoxDecoration(
+            color: provider.isDarkMode()
+                ? MyThemeData.primaryColorDark
+                : Colors.white,
+            borderRadius: BorderRadius.circular(25)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
-          ),
-          InkWell(
-              onTap: () {
-                taskDate();
-              },
-              child: Directionality(
-                textDirection: TextDirection.ltr,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}',
+
+            Text(AppLocalizations.of(context)!.sheet,
+                style: TextStyle(
+                  color: provider.isDarkMode() ? Colors.white : Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                )),
+            Form(
+              key: formkey,
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(20),
+                    child: TextFormField(
                       style: TextStyle(
-                        fontSize: 18,
                         color:
                             provider.isDarkMode() ? Colors.white : Colors.black,
                       ),
+                      onChanged: (text) {
+                        title = text;
+                      },
+                      validator: (textValue) {
+                        if (textValue == null || textValue.isEmpty) {
+                          return AppLocalizations.of(context)!.title_validation;
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.title,
+                          labelStyle: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: provider.isDarkMode()
+                                ? Colors.white24
+                                : Colors.black38,
+                          )),
                     ),
-                  ],
-                ),
-              )),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.04,
-          ),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(20),
+                    child: TextFormField(
+                      style: TextStyle(
+                        color:
+                            provider.isDarkMode() ? Colors.white : Colors.black,
+                      ),
+                      onChanged: (text) {
+                        description = text;
+                      },
+                      validator: (textValue) {
+                        if (textValue == null || textValue.isEmpty) {
+                          return AppLocalizations.of(context)!.details_validation;
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.details,
+                          labelStyle: TextStyle(
+                            color: provider.isDarkMode()
+                                ? Colors.white24
+                                : Colors.black38,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.task_time,
+                    style: TextStyle(
+                        color: provider.isDarkMode()
+                            ? Colors.white24
+                            : Colors.black38,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  )
+                ],
               ),
-              onPressed: () {
-                addToDo();
-              },
-              child: Text(AppLocalizations.of(context)!.add))
-        ],
+            ),
+            InkWell(
+                onTap: () {
+                  taskDate();
+                },
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color:
+                              provider.isDarkMode() ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                ),
+                onPressed: () {
+                  addToDo();
+                },
+                child: Text(AppLocalizations.of(context)!.add)),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+
+          ],
+        ),
       ),
     );
   }

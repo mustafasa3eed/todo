@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/models/firebase.dart';
@@ -108,33 +109,23 @@ class TodoWidget extends StatelessWidget {
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.access_time,
-                            color: provider.isDarkMode()
-                                ? Colors.white
-                                : Colors.black,
-                          ),
-                        ),
-                        Text(
-                          item.description,
-                          style: item.isDone
-                              ? const TextStyle(
-                                  color: MyThemeData.greenColor,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold)
-                              : TextStyle(
-                                  color: provider.isDarkMode()
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                    SizedBox(
+                      width: 200,
+                      child: Text(
+                        item.description,
+                        textAlign: TextAlign.center,
+                        style: item.isDone
+                            ? const TextStyle(
+                                color: MyThemeData.greenColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold)
+                            : TextStyle(
+                                color: provider.isDarkMode()
+                                    ? Colors.white
+                                    : Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold),
+                      ),
                     )
                   ],
                 )),

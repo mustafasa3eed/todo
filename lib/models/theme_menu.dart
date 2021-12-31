@@ -15,39 +15,41 @@ class _ThemeMenuState extends State<ThemeMenu> {
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
 
-    return Container(
-      margin: EdgeInsets.only(left: 20,right: 20, bottom: 200),
-      height: 100,
-      decoration: BoxDecoration(
-        color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: () {
-              provider.changeTheme(ThemeMode.light);
-              Navigator.pop(context);
-            },
-            child: provider.isDarkMode()
-                ? unSelectedTheme(
-                AppLocalizations.of(context)!.light)
-                : selectedTheme(
-                AppLocalizations.of(context)!.light),
-          ),
-          InkWell(
-            onTap: () {
-              provider.changeTheme(ThemeMode.dark);
-              Navigator.pop(context);
-            },
-            child: provider.isDarkMode()
-                ? selectedTheme(
-                AppLocalizations.of(context)!.dark)
-                : unSelectedTheme(
-                AppLocalizations.of(context)!.dark),
-          )
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.only(left: 20,right: 20, bottom: 200),
+        height: 100,
+        decoration: BoxDecoration(
+          color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                provider.changeTheme(ThemeMode.light);
+                Navigator.pop(context);
+              },
+              child: provider.isDarkMode()
+                  ? unSelectedTheme(
+                  AppLocalizations.of(context)!.light)
+                  : selectedTheme(
+                  AppLocalizations.of(context)!.light),
+            ),
+            InkWell(
+              onTap: () {
+                provider.changeTheme(ThemeMode.dark);
+                Navigator.pop(context);
+              },
+              child: provider.isDarkMode()
+                  ? selectedTheme(
+                  AppLocalizations.of(context)!.dark)
+                  : unSelectedTheme(
+                  AppLocalizations.of(context)!.dark),
+            )
+          ],
+        ),
       ),
     );
   }

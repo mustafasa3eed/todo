@@ -56,22 +56,6 @@ class _TodoListState extends State<TodoList> {
             locale: provider.appLanguage,
           ),
         ),
-        // Container(
-        //   color: Colors.blue,
-        //   child: DatePicker(
-        //     DateTime.now(),
-        //     initialSelectedDate: DateTime.now(),
-        //     selectionColor: Colors.black,
-        //     selectedTextColor: Colors.white,
-        //     daysCount:  15,
-        //     onDateChange: (date) {
-        //       // New date selected
-        //       setState(() {
-        //         selectedDay = date;
-        //       });
-        //     },
-        //   ),
-        // ),
         Expanded(
           child: Scrollbar(
             child: StreamBuilder<QuerySnapshot<task>>(
