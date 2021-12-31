@@ -82,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   void newTaskSheet(){
     showModalBottomSheet<void>(
+      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       context:context,
       builder:(BuildContext context){

@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<AppConfigProvider>(context);
-
+    initSharedPreferences();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  initSharedPreferences() async {
+ void initSharedPreferences() async {
     prefs = await SharedPreferences.getInstance();
     provider.changeLanguage(prefs.getString('language') ?? 'en');
     if (prefs.getString('theme') == 'light') {

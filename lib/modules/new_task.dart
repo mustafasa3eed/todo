@@ -31,6 +31,15 @@ class _NewTaskState extends State<NewTask> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              decoration: BoxDecoration(
+                color: provider.isDarkMode()? MyThemeData.darkScaffoldBackground:MyThemeData.primaryColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              margin: const EdgeInsets.only(top: 10),
+              width: 40,
+              height: 4,
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),

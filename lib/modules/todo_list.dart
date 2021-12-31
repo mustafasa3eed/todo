@@ -38,14 +38,14 @@ class _TodoListState extends State<TodoList> {
           child: CalendarTimeline(
             showYears: true,
             initialDate: selectedDay,
-            firstDate: DateTime.now(),
+            firstDate: DateTime.now().subtract(Duration(days: 7)),
             lastDate: DateTime.now().add(const Duration(days: 365)),
             onDateSelected: (date) {
               setState(() {
                 selectedDay = date!;
               });
             },
-            leftMargin: 20,
+            leftMargin: 10,
             monthColor: Colors.white70,
             dayColor: Colors.teal[200],
             dayNameColor: const Color(0xFF333A47),
