@@ -13,7 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class TodoWidget extends StatelessWidget {
   task item;
 
-  TodoWidget(this.item);
+  TodoWidget(this.item, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +153,7 @@ class TodoWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8)),
                           margin: const EdgeInsets.all(10),
                           child: const ImageIcon(
-                            const AssetImage('assets/images/icon-check.png'),
+                            AssetImage('assets/images/icon-check.png'),
                             color: Colors.white,
                           ),
                         ),
