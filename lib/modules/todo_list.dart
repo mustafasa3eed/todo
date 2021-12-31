@@ -1,10 +1,10 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:todo/data/firebase.dart';
-import 'package:todo/data/task.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
-import 'package:todo/ui/home/todo_widget.dart';
+import 'package:todo/models/firebase.dart';
+import 'package:todo/models/task.dart';
+import 'package:todo/shared/network/local/app_config_provider.dart';
+import 'package:todo/models/todo_widget.dart';
 import 'package:provider/provider.dart';
 
 class TodoList extends StatefulWidget {

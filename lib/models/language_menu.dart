@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:todo/shared/network/local/app_config_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/ui/home/theme.dart';
+import 'package:todo/shared/styles/theme.dart';
 
 class LanguageMenu extends StatefulWidget {
   const LanguageMenu({Key? key}) : super(key: key);

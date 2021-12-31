@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo/data/task.dart';
+import 'package:todo/models/task.dart';
 
 extension MyDateExtension on DateTime{
   DateTime getDateOnly(){

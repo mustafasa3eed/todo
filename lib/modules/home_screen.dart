@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:todo/ui/home/new_task.dart';
-import 'package:todo/ui/home/settings.dart';
-import 'package:todo/ui/home/theme.dart';
-import 'package:todo/ui/home/todo_list.dart';
+import 'package:todo/modules/new_task.dart';
+import 'package:todo/modules/settings.dart';
+import 'package:todo/shared/styles/theme.dart';
+import 'package:todo/modules/todo_list.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:todo/shared/network/local/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 

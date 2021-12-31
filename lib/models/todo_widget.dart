@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/data/firebase.dart';
-import 'package:todo/data/task.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:todo/models/firebase.dart';
+import 'package:todo/models/task.dart';
+import 'package:todo/shared/network/local/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:todo/ui/home/edit_task_screen.dart';
-import 'package:todo/ui/home/theme.dart';
+import 'package:todo/modules/edit_task_screen.dart';
+import 'package:todo/shared/styles/theme.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class TodoWidget extends StatelessWidget {

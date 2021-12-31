@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo/ui/home/edit_task_screen.dart';
-import 'package:todo/ui/home/home_screen.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
+import 'package:todo/modules/edit_task_screen.dart';
+import 'package:todo/modules/home_screen.dart';
+import 'package:todo/shared/network/local/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/ui/home/theme.dart';
+import 'package:todo/shared/styles/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
