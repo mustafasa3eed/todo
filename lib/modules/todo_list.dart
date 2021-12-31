@@ -33,27 +33,30 @@ class _TodoListState extends State<TodoList> {
 
     return Column(
       children: [
-        Container(
-          color: Colors.blue,
-          child: CalendarTimeline(
-            showYears: true,
-            initialDate: selectedDay,
-            firstDate: DateTime.now().subtract(Duration(days: 7)),
-            lastDate: DateTime.now().add(const Duration(days: 365)),
-            onDateSelected: (date) {
-              setState(() {
-                selectedDay = date!;
-              });
-            },
-            leftMargin: 10,
-            monthColor: Colors.white70,
-            dayColor: Colors.teal[200],
-            dayNameColor: const Color(0xFF333A47),
-            activeDayColor: Colors.white,
-            activeBackgroundDayColor: Colors.redAccent[100],
-            dotsColor: const Color(0xFF333A47),
-            selectableDayPredicate: (date) => date.day != 0,
-            locale: provider.appLanguage,
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Container(
+            color: Colors.blue,
+            child: CalendarTimeline(
+              showYears: true,
+              initialDate: selectedDay,
+              firstDate: DateTime.now().subtract(const Duration(days: 7)),
+              lastDate: DateTime.now().add(const Duration(days: 365)),
+              onDateSelected: (date) {
+                setState(() {
+                  selectedDay = date!;
+                });
+              },
+              leftMargin: 10,
+              monthColor: Colors.white70,
+              dayColor: Colors.teal[200],
+              dayNameColor: const Color(0xFF333A47),
+              activeDayColor: Colors.white,
+              activeBackgroundDayColor: Colors.redAccent[100],
+              dotsColor: const Color(0xFF333A47),
+              selectableDayPredicate: (date) => date.day != 0,
+              locale: provider.appLanguage,
+            ),
           ),
         ),
         Expanded(

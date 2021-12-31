@@ -33,7 +33,7 @@ class _NewTaskState extends State<NewTask> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: provider.isDarkMode()? MyThemeData.darkScaffoldBackground:MyThemeData.primaryColor,
+                color: provider.isDarkMode()? MyThemeData.darkScaffoldBackground:Colors.black26,
                 borderRadius: BorderRadius.circular(12),
               ),
               margin: const EdgeInsets.only(top: 10),

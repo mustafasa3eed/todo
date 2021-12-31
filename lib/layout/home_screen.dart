@@ -42,33 +42,36 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         bottomNavigationBar:
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8)
-              ),
-              child: BottomAppBar(
-                color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
-                shape: const CircularNotchedRectangle(),
-                notchMargin: 8,
-                clipBehavior: Clip.antiAlias,
-                child: BottomNavigationBar(
-                  backgroundColor: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
-                  elevation: 0,
-                  currentIndex: currentIndex,
-                  onTap: (index){
-                    currentIndex= index;
-                    setState(() {});
-                  },
-                  showSelectedLabels: false,
-                  showUnselectedLabels: false,
-                  items:  [
-                    BottomNavigationBarItem(icon: Icon(Icons.list,size: 33,color:provider.isDarkMode()?Colors.white70:Colors.black54,), label: '',
-                        tooltip: AppLocalizations.of(context)!.tasks_list,
-                        activeIcon: const Icon(Icons.list,size: 33,)),
-                    BottomNavigationBarItem(icon: Icon(Icons.settings_outlined, size: 33,color:provider.isDarkMode()?Colors.white70:Colors.black54),label: '',
-                        tooltip: AppLocalizations.of(context)!.settings,
-                      activeIcon: const Icon(Icons.settings_outlined,size: 33,)),
-                  ],
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8)
+                ),
+                child: BottomAppBar(
+                  color: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+                  shape: const CircularNotchedRectangle(),
+                  notchMargin: 8,
+                  clipBehavior: Clip.antiAlias,
+                  child: BottomNavigationBar(
+                    backgroundColor: provider.isDarkMode()?MyThemeData.primaryColorDark:Colors.white,
+                    elevation: 0,
+                    currentIndex: currentIndex,
+                    onTap: (index){
+                      currentIndex= index;
+                      setState(() {});
+                    },
+                    showSelectedLabels: false,
+                    showUnselectedLabels: false,
+                    items:  [
+                      BottomNavigationBarItem(icon: Icon(Icons.list,size: 33,color:provider.isDarkMode()?Colors.white70:Colors.black54,), label: '',
+                          tooltip: AppLocalizations.of(context)!.tasks_list,
+                          activeIcon: const Icon(Icons.list,size: 33,)),
+                      BottomNavigationBarItem(icon: Icon(Icons.settings_outlined, size: 33,color:provider.isDarkMode()?Colors.white70:Colors.black54),label: '',
+                          tooltip: AppLocalizations.of(context)!.settings,
+                        activeIcon: const Icon(Icons.settings_outlined,size: 33,)),
+                    ],
+                  ),
                 ),
               ),
             ),
